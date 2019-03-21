@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  api:
+    build: ./api
+    command: gunicorn app:app -b 0.0.0.0:5000 --reload
+    volumes:
+      - ./api:/app
+    links:
+      - db
+    ports:
+      - "5000:5000"
+
+  db:
+    image: mysql:5.7
+    ports:
+      - "6000:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
