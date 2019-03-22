@@ -9,4 +9,4 @@ RUN npm install
 
 ADD . /node
 
-ENTRYPOINT npm run serve
+CMD ["npm", "run", "serve"]
