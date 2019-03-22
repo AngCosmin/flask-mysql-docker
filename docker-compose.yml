@@ -11,6 +11,17 @@ services:
     ports:
       - "5000:5000"
 
+  node:
+    build: ./node
+    volumes:
+      - ./node:/node
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+
   db:
     image: mysql:5.7
     ports:
